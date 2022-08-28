@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
+function App () {
+  const url = 'https://lit-garden-79715.herokuapp.com/authURL';
+
+  function handelClick() {
+    fetch(url, {
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Request-Method': 'GET',
+        'Content-Type': 'application/json'
+      }
+    })
+     .then(res => res.json())
+     .then(data => console.log(data));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <section id='Home'>
+    <div className='card-main'>
+    <div className='card-content'>
+    <img className='card-icon' alt='card-icon' src='images/google-drive.png' />
+    <h1 className='card-title'>Google Drive</h1>
+    <p className='card-description'>Access to your google drive files.</p>
+    <button className='btn btn-outline-dark' onClick={handelClick}>Give Access</button>
     </div>
-  );
+    </div>
+    </section>
+  )
 }
 
 export default App;
